@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import './App.css'
-import apiKey from 'secrets'
+//import apiKey from 'env'
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends React.Component {
     state = { advice: '' };
-
+    
     componentDidMount(){
         this.fetchAdvice();
     }
@@ -25,5 +27,4 @@ class App extends React.Component {
         return ( <h1>{ advice }</h1> );
     }
 }
- alert(apiKey.text);
 export default App;
