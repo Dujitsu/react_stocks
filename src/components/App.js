@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import './App.css'
+import '../styles/App.css'
 //import apiKey from 'env'
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = process.env.REACT_APP_TEST;
 
 class App extends React.Component {
     state = { advice: '' };
