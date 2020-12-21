@@ -1,28 +1,35 @@
 import React from 'react';
 import axios from 'axios';
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = process.env.REACT_APP_SANDBOX_API_KEY;
 
 class App extends React.Component {
-    state = { advice: '' };
-    
-    componentDidMount(){
-        this.fetchAdvice();
+    constructor(props){
+        super(props);
+        this.state = {symbol: ''};
     }
-//
-    fetchAdvice = () => {
-        axios.get('https://api.adviceslip.com/advice')
+
+    componentDidMount() {
+        this.fetchSymbol();
+        console.log(this.state.symbol)
+    }
+
+    fetchSymbol = () => {
+        axios.get('https://sandbox.iexapis.com/stable/stock/aapl/cash-flow?token=')
             .then((response) => {
-                const {advice} = response.data.slip;
-                this.setState({ advice })
+                console.log(response.data.cashflow);
+                const { symbol } = response.data.symbol;
+
+                this.setState({ symbol });
+                console.log(symbol);
             })
-            .catch((error => {
+            .catch((error) => {
                 console.log(error);
-            }))
-    }    
+            });
+    }  
     render() { 
-        const { advice } = this.state;
-        return ( <h1>{ advice }</h1> );
+        const { symbol } = this.state;
+        return ( <h1>{ symbol }</h1> );
     }
 }
-export default App;
+export default App; 
