@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
-const API_KEY = process.env.REACT_APP_SANDBOX_API_KEY;
+require('dotenv').config();
 
 class App extends React.Component {
     constructor(props){
@@ -14,25 +13,13 @@ class App extends React.Component {
         console.log(this.state.symbol)
     }
 
-
     fetchSymbol = () => {
-        const url = '/stock/IBM/quote';
-        console.log(url)
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: API_KEY
-            }
-        }
-        console.log(config)
-        //const url = 'https://sandbox.iexapis.com/stable/stock/aapl/cash-flow?token=' + API_KEY;
-        axios.get(url)
+        axios.get(`https://sandbox.iexapis.com/stable/stock/aapl/cash-flow?token=${process.env.REACT_APP_API_KEY}`)
             .then((response) => {
-                console.log(response);
-                //const { symbol } = response.data.symbol;
+                console.log(response.data.symbol);
+                const { symbol } = response.data.symbol;
 
-                //this.setState({ symbol });
-                //console.log(symbol);
+                this.setState({ symbol });
             })
             .catch((error) => {
                 console.log(error);
