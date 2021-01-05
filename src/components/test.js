@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import SubTest from './SubTest.js'
 require('dotenv').config();
 
-class App extends React.Component {
+class Test extends React.Component {
     constructor(props){
         super(props);
         this.state = {symbol: ''};
+
     }
 
     componentDidMount() {
@@ -27,8 +29,11 @@ class App extends React.Component {
     }  
     render() { 
         const { symbol } = this.state;
-        return ( <h1>{ symbol }</h1> );
+        return ( 
+            <h1>{ symbol }</h1>
+            //<SubTest setCounter=1 />
+        );
     }
 }
 
-export default App; 
+export default Test; 
