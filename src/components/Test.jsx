@@ -1,15 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import SubTest from './SubTest.js'
+import SubTest from './SubTest'
+import Temp from './Temp'
 require('dotenv').config();
 
 class Test extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {symbol: ''};
-
-    }
-
+state = {
+    symbol: ''
+};
     componentDidMount() {
         this.fetchSymbol();
         console.log(this.state.symbol)
@@ -18,10 +16,8 @@ class Test extends React.Component {
     fetchSymbol = () => {
         axios.get(`https://sandbox.iexapis.com/stable/stock/aapl/cash-flow?token=${process.env.REACT_APP_API_KEY}`)
             .then((response) => {
-                console.log(response.data.symbol);
-                const { symbol } = response.data.symbol;
-
-                this.setState({ symbol });
+                console.log(response);
+                this.setState({ symbol: response.data.symbol });
             })
             .catch((error) => {
                 console.log(error);
@@ -30,7 +26,12 @@ class Test extends React.Component {
     render() { 
         const { symbol } = this.state;
         return ( 
-            <h1>{ symbol }</h1>
+            <div>
+                <SubTest title="testing"/>
+                <div className="TempTest"><Temp /></div>
+                <h1>{ symbol }</h1>
+                <h1>4444 H1</h1>
+            </div>
             //<SubTest setCounter=1 />
         );
     }

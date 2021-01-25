@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Test from './components/Test';
+import SearchBar from './components/SearchBar';
 require('dotenv').config();
 
-ReactDOM.render(<Test />, document.getElementById('temp'));
+ReactDOM.render(<SearchBar />, document.getElementById('searchBar'));
